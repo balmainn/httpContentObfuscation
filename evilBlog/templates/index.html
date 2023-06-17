@@ -1,0 +1,30 @@
+<h1> Welcome to the evil blog!</h1>
+
+{% if showImgs %}
+
+{% for img in images %}
+
+<img src="{{img}}">
+{% endfor %}
+
+{% else %}
+<h1> there is nothing to see here!</h1>
+{% endif %}
+
+<img src="static/cats/cat3.jpeg">
+<img src="{{ url_for('static', filename='cats/cat1.webp') }}">
+
+
+<form action="/frombutton">
+    <!-- <input type="hidden" name="moarDogs" value="True"> -->
+    <button type="submit" name="moarDogs" value="True"> More Dogs Here! </button>    
+
+
+{% if showDogs %}
+<form action="/showDogs" method="post">
+    <button type="submit"> More Dogs Here! </button>    
+
+{% endif %}
+
+<!-- <a href="http://www.google.com">More Evil Here!</a> -->
+<a href="http://www.127.0.0.1:8000">More Evil Here!</a>
