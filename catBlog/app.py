@@ -23,15 +23,15 @@ app.wsgi_app = ProxyFix(
 )
 
 
-@app.route('/frombutton')
-def frombutton():
+# @app.route('/frombutton')
+# def frombutton():
     
-    #print("request form from button!",request.form)
-    if "moarDogs" in request.args:
-        print("MOAR DOGS REQUESTED")
-        return redirect(url_for("dogs"))
-    else:
-        return render_template("index.html", showImgs=False)
+#     #print("request form from button!",request.form)
+#     if "moarDogs" in request.args:
+#         print("MOAR DOGS REQUESTED")
+#         return redirect(url_for("dogs"))
+#     else:
+#         return render_template("index.html", showImgs=False)
     
 
     
@@ -48,9 +48,10 @@ def isFriendly(referer):
             return True
     print("site is not friendly =(")
     return False
+
 @app.route('/',  methods=['GET','POST'])
 def index():    
-    return render_template("index.html", showImgs=False,imgName="")
+    return render_template("index.html", showImgs=False,imgName="", showBad=False)
     # ref = request.referrer
     # friendly = False
     # if ref != None:
@@ -70,14 +71,14 @@ def cats():
     for img in imgs:
         imgout.append("/static/cats/"+img)
     print(imgs)
-    return render_template("index.html", showImgs=True,images=imgout)
+    return render_template("index.html", showImgs=True,images=imgout, showBad=False)
 
 @app.route('/friendlyRedirect', methods=['GET','POST'])
 def friendlyRedirect():
     form = request.form
     print("/friendlyRedirect", form)
-
-    return render_template("index.html", showImgs=False)
+    """TODO?"""
+    return render_template("index.html", showImgs=False, showBad=False)
 
 def getValidToken():
     #token generation logic here.
@@ -89,9 +90,24 @@ def readCookie():
     token = request.cookies.get('token')
     if(tokenIsValid(token)):
         imgout = getBadImages()
-        return render_template("index.html", showImgs=True,images=imgout)
+        return render_template("index.html", showImgs=True,images=imgout, showBad=True)
     else:
-        return render_template("index.html", showImgs=False)
+        return render_template("index.html", showImgs=False, showBad=False)
+    
+def isValidUser(user):
+    """method for determining if a user can see bad content or not
+    Could be a shared database or a file in the control of this server"""
+    return True
+
+@app.route("/loginCookie")
+def loginCookie():
+    print("reading coologinCookiekies")
+    user = request.cookies.get('username')
+    if isValidUser(user):
+        imgout = getBadImages()
+        return render_template("index.html", showImgs=True,images=imgout, showBad=True)
+    else:
+        return render_template("index.html", showImgs=False, showBad=False)
     
 
 @app.route('/intermidary')
@@ -106,9 +122,9 @@ def intermidary(isFriendly=False):
     print(token)
     if tokenIsValid(token):
         imgout = getBadImages()
-        return render_template("index.html", showImgs=True,images=imgout)
+        return render_template("index.html", showImgs=True,images=imgout, showBad=True)
     else:
-        return render_template("index.html", showImgs=False)
+        return render_template("index.html", showImgs=False, showBad=False)
 
 @app.route('/friendlyServerToken', methods=['POST'])
 def friendlyServerToken(isFriendly=False):
@@ -126,7 +142,7 @@ def friendlyServerToken2(isFriendly=False):
     #sever freindly part 2    
     imgout = getBadImages()
 
-    return render_template("index.html", showImgs=True,images=imgout)
+    return render_template("index.html", showImgs=True,images=imgout, showBad=True)
 
 def tokenIsValid(token):
     if getValidToken() == token:
@@ -151,23 +167,30 @@ def friendlyServerClientToken(isFriendly=False):
         token = request.form.get('token')
         if isFriendly and token == getValidToken():
             imgout=getBadImages()
-            return render_template("index.html", showImgs=True,images=imgout)
+            return render_template("index.html", showImgs=True,images=imgout, showBad=True)
             
+    elif request.method == "GET":
+        print("requestform friendly token ", request.form)
+        isFriendly = request.args.get('isFriendly')
+        token = request.args.get('token')
+        if isFriendly and token == getValidToken():
+            imgout=getBadImages()
+            return render_template("index.html", showImgs=True,images=imgout, showBad=True)
     else:
-        return render_template("index.html", showImgs=False)
+        return render_template("index.html", showImgs=False, showBad=False)
     
 
 @app.route('/freindlyReferrerExample', methods=['GET','POST'])
 def freindlyReferrerExample():
     ref = request.referrer
     if ref == None:
-        return render_template("index.html", showImgs=False,imgName="")
+        return render_template("index.html", showImgs=False,imgName="", showBad=False)
     else:
         if(isFriendly(ref)):
             imgout = getBadImages()
-            return render_template("index.html", showImgs=True,images=imgout)
+            return render_template("index.html", showImgs=True,images=imgout, showBad=True)
         else:
-            return render_template("index.html", showImgs=False,imgName="")
+            return render_template("index.html", showImgs=False,imgName="", showBad=False)
 
 
 

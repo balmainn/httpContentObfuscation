@@ -56,8 +56,8 @@ def login2():
     password = request.form['password']
     if(isValidUser(username,password)):
         #return render_template("authenticated.html", user=username)
-        resp = make_response(render_template('giveMeCookie.html'))
-        resp.set_cookie('token', getValidToken(),domain="blog.com")
+        resp = make_response(render_template('authenticated.html'))
+        resp.set_cookie('username',username,domain="blog.com")
         return(resp)
     else:
         return render_template("authenticated.html", user="Not a valid user")
