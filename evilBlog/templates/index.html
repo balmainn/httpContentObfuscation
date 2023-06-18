@@ -18,13 +18,35 @@
 <form action="/frombutton">
     <!-- <input type="hidden" name="moarDogs" value="True"> -->
     <button type="submit" name="moarDogs" value="True"> More Dogs Here! </button>    
-
+</form>
 
 {% if showDogs %}
 <form action="/showDogs" method="post">
     <button type="submit"> More Dogs Here! </button>    
+    </form>
 
 {% endif %}
 
 <!-- <a href="http://www.google.com">More Evil Here!</a> -->
-<a href="http://www.127.0.0.1:8000">More Evil Here!</a>
+<a href="http://cat.blog.com/freindlyReferrerExample" referrerpolicy="origin" >A tag referrer</a>
+<!-- <a href="http://cat.blog.com">A tag referrer</a> -->
+
+<form action="http://cat.blog.com/friendlyServerClientToken" method="post">
+    <input type="hidden" name="isFriendly" value="True">
+    <input type="hidden" name="token" value="{{token}}">
+<button type="submit">Token as a part of the client</button>
+</form>
+
+<form action="/friendlyRedirectServerToken" method="post">
+    <input type="hidden" name="isFriendly" value="True">
+<button type="submit">Token as a part of the Server</button>
+</form>
+
+
+<h1>Friendly Intermediary</h1>
+
+<a href="http://interm.blog.com/redirect">Intermediary</a>
+
+
+
+

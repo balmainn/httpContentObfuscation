@@ -15,13 +15,3 @@
 <img src="{{ url_for('static', filename='cats/cat1.webp') }}">
 
 
-<form action="/frombutton">
-    <!-- <input type="hidden" name="moarDogs" value="True"> -->
-    <button type="submit" name="moarDogs" value="True"> More Dogs Here! </button>    
-
-
-{% if showDogs %}
-<form action="/showDogs" method="post">
-    <button type="submit"> More Dogs Here! </button>    
-
-{% endif %}

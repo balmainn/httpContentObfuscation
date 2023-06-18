@@ -1,5 +1,5 @@
 from flask import Flask, redirect, request, url_for, render_template, session, abort
-
+import requests as req
 import jinja2
 #from flask_login import LoginManager, current_user, login_required, login_user, logout_user
 
@@ -16,23 +16,19 @@ template.render(name="World")
 app = Flask(__name__)
 app.config['TESTING'] = True
 
+from werkzeug.middleware.proxy_fix import ProxyFix
+app.wsgi_app = ProxyFix(
+    app.wsgi_app, x_for=3, x_proto=3, x_host=3, x_prefix=3
+)
+
+def getValidToken():
+    #token generation logic here.
+    return "aaabbbccc"    
 
 
-@app.route('/frombutton')
-def frombutton():
-    
-    #print("request form from button!",request.form)
-    if "moarDogs" in request.args:
-        print("MOAR DOGS REQUESTED")
-        return redirect(url_for("dogs"))
-    else:
-        return render_template("index.html", showImgs=False)
-    
-
-    
 @app.route('/')
 def index():    
-    return render_template("index.html", showImgs=False,imgName="")
+    return render_template("index.html", showImgs=False,imgName="",token=getValidToken())
 
 @app.route('/cats')
 def cats():
@@ -44,15 +40,17 @@ def cats():
     print(imgs)
     return render_template("index.html", showImgs=True,images=imgout)
 
-@app.route('/dogs')
-def dogs():
-    imgName = 'dog'
-    imgs = os.listdir(f"{os.getcwd()}/static/dogs")
-    imgout = []
-    for img in imgs:
-        imgout.append("static/dogs/"+img)
-    print(imgout)
-    return render_template("index.html", showImgs=True,images=imgout)
+@app.route("/friendlyRedirectClientToken", methods=['POST'])
+def friendlyRedirectClientToken():
+    print("friendly redirect function called")
+    token = request.form.get('token')
+    return(redirect(f"http://cat.blog.com/friendlyServerClientToken?token={token}&isFriendly=True",code=302))
+    
+@app.route("/friendlyRedirectServerToken", methods=['POST'])
+def friendlyRedirectServerToken():
+    print("friendly redirect function called")
+    token = getValidToken()
+    return(redirect(f"http://cat.blog.com/friendlyServerClientToken?token={token}&isFriendly=True",code=302))
 
 if __name__ == '__main__':
     
