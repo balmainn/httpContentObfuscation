@@ -83,6 +83,17 @@ def getValidToken():
     #token generation logic here.
     return "aaabbbccc"    
 
+@app.route("/readCookie")
+def readCookie():
+    print("reading cookies")
+    token = request.cookies.get('token')
+    if(tokenIsValid(token)):
+        imgout = getBadImages()
+        return render_template("index.html", showImgs=True,images=imgout)
+    else:
+        return render_template("index.html", showImgs=False)
+    
+
 @app.route('/intermidary')
 def intermidary(isFriendly=False):
     # print("request from intermediary ", request)

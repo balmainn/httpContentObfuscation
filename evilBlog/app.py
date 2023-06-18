@@ -1,4 +1,4 @@
-from flask import Flask, redirect, request, url_for, render_template, session, abort
+from flask import Flask, redirect, request, url_for, render_template, session, abort,make_response
 import requests as req
 import jinja2
 #from flask_login import LoginManager, current_user, login_required, login_user, logout_user
@@ -39,6 +39,37 @@ def cats():
         imgout.append("/static/cats/"+img)
     print(imgs)
     return render_template("index.html", showImgs=True,images=imgout)
+
+
+
+@app.route("/login")
+def login():
+    return render_template("login.html")
+
+
+def isValidUser(username,password):
+    return True
+
+@app.route("/login2", methods=['POST'])
+def login2():
+    username = request.form['username']
+    password = request.form['password']
+    if(isValidUser(username,password)):
+        #return render_template("authenticated.html", user=username)
+        resp = make_response(render_template('giveMeCookie.html'))
+        resp.set_cookie('token', getValidToken(),domain="blog.com")
+        return(resp)
+    else:
+        return render_template("authenticated.html", user="Not a valid user")
+
+@app.route("/giveMeCookie")
+def giveMeCookie():
+    """Sets the obscure token in the user's cookies."""
+    resp = make_response(render_template('giveMeCookie.html'))
+    #resp.set_cookie('token', getValidToken(),domain="blog.com")
+    resp.set_cookie('token', getValidToken())
+    return(resp)
+
 
 @app.route("/friendlyRedirectClientToken", methods=['POST'])
 def friendlyRedirectClientToken():
