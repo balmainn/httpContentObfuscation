@@ -33,7 +33,6 @@ def index():
     return render_template("index.html")
 
 @app.route('/redirect')
-
 def redir():    
     target = getRedirectTarget()
     token=getValidToken()

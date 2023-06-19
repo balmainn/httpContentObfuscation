@@ -66,8 +66,8 @@ def login2():
 def giveMeCookie():
     """Sets the obscure token in the user's cookies."""
     resp = make_response(render_template('giveMeCookie.html'))
-    #resp.set_cookie('token', getValidToken(),domain="blog.com")
-    resp.set_cookie('token', getValidToken())
+    resp.set_cookie('token', getValidToken(),domain="blog.com")
+    #resp.set_cookie('token', getValidToken())
     return(resp)
 
 
