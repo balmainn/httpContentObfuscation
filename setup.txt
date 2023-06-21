@@ -52,3 +52,6 @@ server {
 127.0.0.1	interm.blog.com
 127.0.0.1	localhost
 
+~~~~~~~~~~~~~~~~~~~~~~
+your yubikey client id should be stored in a secrets.txt file that is stored in the evilBlog folder. 
+you must also sign up to get an API key here https://upgrade.yubico.com/getapikey/ 

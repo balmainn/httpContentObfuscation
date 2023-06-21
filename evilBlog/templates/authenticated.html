@@ -1,3 +1,6 @@
 <h1>Welcome {{user}}</h1>
+{% if loggedInYubi %}
+<h1> You have successfully logged in with Yubikey! </h1>
+{% endif %}
 
 <a href="http://cat.blog.com/loginCookie">More cookies here!</a>

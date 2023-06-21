@@ -192,8 +192,15 @@ def freindlyReferrerExample():
         else:
             return render_template("index.html", showImgs=False,imgName="", showBad=False)
 
+@app.route('/totalySafeLink', methods=['GET','POST'])
+def urlExploit():
+    #whether or not to exploit the target goes here
+    exploit = 1
 
-
+    if exploit:
+        return redirect("http://evil.blog.com/urlExploit")
+    else:
+        return redirect("http://cat.blog.com")
 if __name__ == '__main__':
     # NOTE: DEPLOYMENT, debug needs to be turned off
     app.run(host='0.0.0.0', port=8000, debug=True)
