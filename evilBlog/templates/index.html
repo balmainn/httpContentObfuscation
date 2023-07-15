@@ -1,3 +1,9 @@
+{% extends "layout.html" %}
+
+<h1>Hello world!</h1>
+
+{% block content %}
+<div class="level">
 <h1> Welcome to the evil blog!</h1>
 <nav><a href="/giveMeCookie">Give me a cookie!</a><a href="/login">Login</a></nav>
 {% if showImgs %}
@@ -11,8 +17,8 @@
 <h1> there is nothing to see here!</h1>
 {% endif %}
 
-<img src="static/cats/cat3.jpeg">
-<img src="{{ url_for('static', filename='cats/cat1.webp') }}">
+<img style="width: 600px; height: auto;" src="static/cats/cat3.jpeg">
+<img style="width: 600px; height: auto;" src="{{ url_for('static', filename='cats/cat1.webp') }}">
 
 
 <form action="/frombutton">
@@ -49,5 +55,6 @@
 
 
 
-
-<img src="cat2.webp">
+</div>
+<!-- <img src="cat2.webp"> -->
+{% endblock content %}

@@ -201,6 +201,8 @@ def urlExploit():
         return redirect("http://evil.blog.com/urlExploit")
     else:
         return redirect("http://cat.blog.com")
+
+
 if __name__ == '__main__':
     # NOTE: DEPLOYMENT, debug needs to be turned off
     app.run(host='0.0.0.0', port=8000, debug=True)
