@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP Content Obfuscation Demo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    
+</head>
+<body>
+    
+    {% include "/common/navbar.html" %}
+    
+
+    <!-- Main content -->
+    <main>
+        {% block content %}
+        <!-- This space will be replaced by the actual content from the child templates -->
+        {% endblock content %}
+    </main>
+
+    <!-- Footer -->
+    {% include "/footer.html" %}
+</body>
+</html>

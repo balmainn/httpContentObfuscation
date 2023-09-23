@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+<h1 class="title"> Welcome to the evil blog!</h1>
+
+{% if showImgs %}
+
+{% for img in images %}
+
+<img style="display: block; margin-left: auto; margin-right: auto; width: 600px; height: auto;" src="{{img}}">
+{% endfor %}
+
+{% else %}
+<h1 class="title"> there is nothing to see here!</h1>
+{% endif %}
+
+<!-- <img style="width: 600px; height: auto;" src="static/cats/cat3.jpeg"> -->
+
+<img style="display: block; margin-left: auto; margin-right: auto; width: 600px; height: auto;" src="{{ url_for('static', filename='images/MrBurns.jpg') }}">
+
+
+<div class="middle">
+    
+        <div class="content2">
+            <h2>Friendly Referrer</h2>
+            <div class="container">
+                <a href="http://cat.blog.com/freindlyReferrerExample" referrerpolicy="origin">A tag referrer</a>
+            </div>
+        </div>
+    
+    <div class="content2">
+        <h2>Server Client Tokens</h2>
+        <div class="container">
+            <form action="http://cat.blog.com/friendlyServerClientToken" method="post">
+                <input type="hidden" name="isFriendly" value="True">
+                <input type="hidden" name="token" value="{{token}}">
+                <button type="submit">Token as a part of the client</button>
+            </form>
+        </div>
+        <div class="container">
+            <form action="/friendlyRedirectServerToken" method="post">
+                <input type="hidden" name="isFriendly" value="True">
+                <button type="submit">Token as a part of the Server</button>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="content2">    
+        <h2>Friendly Intermediary</h2>
+        <div class="container">
+            <a href="http://interm.blog.com/redirect">Intermediary</a>
+        </div>
+    </div>
+    <div class="content2">
+        <h2>Token Via Cookie</h2>
+            <div class="container">
+                <a href="/giveMeCookie">Give me a cookie!</a>
+            </div>
+    </div>
+</div>    <!-- middle -->
+
+
+{% endblock content %}

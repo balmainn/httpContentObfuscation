@@ -1,0 +1,57 @@
+etc/dnsmasq.conf
+
+address=/cat.blog.com/127.0.0.1
+address=/evil.blog.com/127.0.0.1
+address=/interm.blog.com/127.0.0.1
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+etc/nginx/sites-available/default 
+
+server {
+    listen 80;
+    server_name cat.blog.com;
+
+    location / {
+        proxy_pass http://localhost:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+
+server {
+    listen 80;
+    server_name evil.blog.com;
+
+    location / {
+        proxy_pass http://localhost:8001;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+
+server {
+    listen 80;
+    server_name interm.blog.com;
+    location / {
+        proxy_pass http://localhost:8002;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/etc/hosts
+
+127.0.0.1	evil.blog.com
+127.0.0.1	cat.blog.com
+127.0.0.1	interm.blog.com
+127.0.0.1	localhost
+
+~~~~~~~~~~~~~~~~~~~~~~
+your yubikey client id should be stored in a secrets.txt file that is stored in the evilBlog folder. 
+you must also sign up to get an API key here https://upgrade.yubico.com/getapikey/ 
