@@ -1,6 +1,20 @@
-<h1>Welcome {{user}}</h1>
+{% extends "layout.html" %}
+{% block content %}
+
 {% if loggedInYubi %}
+<h1>Welcome {{user}}</h1>
 <h1> You have successfully logged in with Yubikey! </h1>
+<a href="http://cat.blog.com/loginCookie">More cookies here!</a>
+
+{% else %}
+    {% if validUser %}
+    <h1> You have successfully logged in! </h1>
+    <a href="http://cat.blog.com/loginCookie">Find your content here!</a>
+    
+    {%else %}
+    <h1>Invalid Username, Password, or Yubikey OTP</h1>
+    <h2>Please Try Again.</h2>
+{% endif %}
 {% endif %}
 
-<a href="http://cat.blog.com/loginCookie">More cookies here!</a>
+{% endblock content %}

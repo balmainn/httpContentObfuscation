@@ -48,6 +48,7 @@ def login():
 
 
 def isValidUser(username,password):
+    print("the user is valid!")
     return True
 
 @app.route("/login2", methods=['POST'])
@@ -56,7 +57,7 @@ def login2():
     password = request.form['password']
     if(isValidUser(username,password)):
         #return render_template("authenticated.html", user=username)
-        resp = make_response(render_template('authenticated.html'))
+        resp = make_response(render_template('authenticated.html',validUser=True))
         resp.set_cookie('username',username,domain="blog.com")
         return(resp)
     else:
@@ -156,6 +157,7 @@ def yubilogin():
     password = request.form['password']
     otp = request.form['otp']
     if(isValidUserOTP(username,password,otp)):
+        print("the user is valid")
         #for now <<TODO>
         resp = make_response(render_template('authenticated.html',loggedInYubi=True))
         resp.set_cookie('username',username,domain="blog.com")

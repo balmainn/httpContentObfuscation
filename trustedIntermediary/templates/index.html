@@ -1,14 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
 <h1> I am a trusted intermediary! nothing to be seen here...</h1>
-
+<h1>However, if I am configured to be a link hub, here are links to all my friends.</h1>
 <ul>
     <li>
-        Link 1
+        <h2><a href="http://cat.blog.com">Catblog</a> a fun cat blog</h2>
     </li>
     <li>
-        Link 2
+        <h2><a href="http://interm.blog.com/redirect">Catblog-Evil Edition</a> Evil Content stored</h2>
+    </li>
+    
+    <li>
+        <h2><a href="http://evil.blog.com">EvilBlog</a> The entrypoint of content</h2>
     </li>
     <li>
-        Link 3
+        <h2>... I need more friends. </h2>
     </li>
 
 </ul>
+
+{% endblock content %}

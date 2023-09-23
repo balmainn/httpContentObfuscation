@@ -170,6 +170,29 @@ div.VMs {
 }
 
 
+.content2 {
+
+    padding: 20px;
+    margin: 20px;
+    width: auto;
+    height: auto;
+    background: linear-gradient(to bottom right, #ffffff, #f5f5f5);
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    font-size: 16pt;   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* display: flex; */
+}
+
+.content2 h1{
+    padding-left: auto;
+    padding-right: 20px;
+    text-align: center;
+    width:30%;
+}
+
 .footer {
     background-color: #222;
     color: #fff;
@@ -222,6 +245,12 @@ div.VMs {
 
 
 
+.middle {
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    padding: auto;
+}
 
 
 .score {
@@ -272,15 +301,26 @@ div.VMs {
     margin-bottom: 0;
 }
 
-.container button {
-    padding: 10px;
-    margin: 20px 0;
+.content2 img{
+    max-width: 720px;
+    /* max-height: 1080px; */
+}
+
+.container button, .content2 button{
+    padding: 15px;
+    margin: 10px 10px;
+    height: auto;
+    width: auto;
     background-color: #666;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 32px;
+    font-weight: 500;
+    
 }
+
 
 .container button:hover {
     background-color: #555;

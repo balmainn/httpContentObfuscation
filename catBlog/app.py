@@ -23,6 +23,27 @@ app.wsgi_app = ProxyFix(
 )
 
 
+"""NOTE S
+This can also be done with fingerprinting as well. 
+essentially, "the dangers of dynamic content" enable adversaries to show content tailored to their user
+Think of it like how facebook shows you adds based on the things you're interested in,
+but now it is, instead, a website that tailor's its content to the user. 
+If we can extrapolate things about a person, we can show them this content. 
+This does, of course, have its downsides. There is nothing from stopping law enforcement from
+impersonating a nair-do-well. so then it is, therefore, most imperitive that the 'advertising' 
+be done on a suitable platform such that it draws the attention of other adversaries and not
+the ire of law enforcement. 
+That said, law enforcement is very likely to know about these things anyway. 
+Also as far as I can tell there is no research on this topic.
+Why is that <FIND REASONS>. 
+either there is some reason/thing that makes this not appealing or 
+there is another option that is better suited for this task
+or this approach is fundementally flawed in some way. 
+Now what would be 'cool' is if someone developed a program that enabled this type of 'hidden content' 
+on an average website... It is defintely doable. This demo took me 3 days to put together. 
+Think of how much more time and effort adversaries are putting into their work 
+and how much more sophisticated their approach could be. """
+
 # @app.route('/frombutton')
 # def frombutton():
     
@@ -151,10 +172,10 @@ def tokenIsValid(token):
         return False
 
 def getBadImages():
-    imgs = os.listdir(f"{os.getcwd()}/static/dogs")
+    imgs = os.listdir(f"{os.getcwd()}/static/evil")
     imgout = []
     for img in imgs:
-        imgout.append("static/dogs/"+img)
+        imgout.append("static/evil/"+img)
     print(imgout)
     return imgout
     
@@ -168,6 +189,8 @@ def friendlyServerClientToken(isFriendly=False):
         if isFriendly and token == getValidToken():
             imgout=getBadImages()
             return render_template("index.html", showImgs=True,images=imgout, showBad=True)
+        else:
+            return render_template("index.html", showImgs=False, showBad=False)
             
     elif request.method == "GET":
         print("requestform friendly token ", request.form)
@@ -176,6 +199,8 @@ def friendlyServerClientToken(isFriendly=False):
         if isFriendly and token == getValidToken():
             imgout=getBadImages()
             return render_template("index.html", showImgs=True,images=imgout, showBad=True)
+        else:
+            return render_template("index.html", showImgs=False, showBad=False)
     else:
         return render_template("index.html", showImgs=False, showBad=False)
     

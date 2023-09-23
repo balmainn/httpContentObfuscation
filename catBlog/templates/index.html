@@ -1,39 +1,37 @@
 {% extends "layout.html" %}
 
-<h1>Hello world!</h1>
-
 {% block content %}
 {% if showImgs %}
 
 {% for img in images %}
-<div class="container">
-<table>
-    <th>
-        <img src="{{img}}"> 
-    </th>
-    <th>
-        
-        {% if showBad %}
-        <h1>Content for sale!</h1> 
-        {% else %}
-        <h1>Look at this cat!</h1> 
-        {% endif %}
-    </th>
-        
-</table>
-</div>
-    
+    <div class="middle">
+        <div class="content2">
+            
+                <img src="{{img}}"> 
+                
+                {% if showBad %}
+                    <h1>Content for sale!</h1> 
+                    <button>Buy Now!</button>
+                {% else %}
+                    <h1>Look at this cat!</h1> 
+                {% endif %}
+                
+            
+        </div>
+    </div>
     
 
 {% endfor %}
 
+<img style="display: block; margin-left: auto; margin-right: auto; width: 600px; height: auto;" src="static/other/whatif-not-a-cat-blog.png">
 {% else %}
-<h1> Welcome to my cat blog! <br>
+<h1 class="title"> Welcome to my cat blog! <br>
     Select Cats in the nav bar to see some cute cats!
 </h1>
+<img style="display: block; margin-left: auto; margin-right: auto; width: 600px; height: auto;" src="static/cats/cat3.jpeg">
 {% endif %}
 
-<img src="static/cats/cat3.jpeg">
+
 
 
 {% endblock content %}

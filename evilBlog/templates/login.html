@@ -1,6 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
 <h1>Please enter your credentials</h1>
 <form action="/login2"method='POST'>
     Username: <input type="text" name="username">
     Password: <input type="text" name="password">
     <button type="submit">Submit</button>
 </form>
+
+<h3> Have a Yubikey? Sign in <a href=http://evil.blog.com/yubi> Here!</a></h3>
+{% endblock content %}

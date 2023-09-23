@@ -169,42 +169,7 @@ div.VMs {
     padding-bottom: 15%;
 }
 
-.content2 {
 
-    padding: 20px;
-    margin: 20px;
-    width: auto;
-    background: linear-gradient(to bottom right, #ffffff, #f5f5f5);
-    border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    font-size: 16pt;   
-    position: relative;
-    /* display: flex; */
-}
-
-.content3 {
-
-    padding: 20px;
-    margin: 20px;
-    width: 300px;
-    background: linear-gradient(to bottom right, #ffffff, #f5f5f5);
-    border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    /* display: flex; */
-}
-
-.middle {
-    display: flex;
-    /* align-items: center; */
-    justify-content: center;
-    padding: auto;
-}
-.spacer {
-    width: 250px;
-    margin: 5% ;
-    /* height: 10%;  */
-    /* margin-right:0px; */
-}
 .footer {
     background-color: #222;
     color: #fff;
@@ -297,7 +262,6 @@ div.VMs {
     background: linear-gradient(to bottom right, #ffffff, #f5f5f5);
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
 }
 
 .container h1, .container h2 {
@@ -308,32 +272,18 @@ div.VMs {
     margin-bottom: 0;
 }
 
-.container a {
-    font-size: 16pt;
-    text-align: center;
-}
-.container a:hover {
-    background-color: #e0d3d3;
-}
-
-
 .container button {
-    font-size: 16pt;
-    padding: 5px;
-    /* padding: 10px;
-    margin: 20px 0; */
-    /* background-color: #666; */
-    /* color: #fff; */
-    background-color: white;
-    color:blue;
-    text-decoration: underline;
+    padding: 10px;
+    margin: 20px 0;
+    background-color: #666;
+    color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .container button:hover {
-    background-color: #e0d3d3;
+    background-color: #555;
 }
 
 .container ul {

@@ -1,3 +1,5 @@
+{% extends "layout.html" %}
+{% block content %}
 <h1>yubikey page</h1>
 
 <form action="/yubilogin" method="post">
@@ -6,3 +8,4 @@
     <input type="text" value="otp" name="otp" >
     <button type="submit"> Login with yubikey</button>
     </form>
+{% endblock content %}
